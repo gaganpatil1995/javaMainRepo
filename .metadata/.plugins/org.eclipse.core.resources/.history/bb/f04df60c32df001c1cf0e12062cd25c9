@@ -1,0 +1,7 @@
+package day7_Assign1_MemberQ;
+
+public class Employee extends Member {
+
+	String specialisation;
+	String department;
+}

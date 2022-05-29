@@ -1,0 +1,9 @@
+package day7_assingment.member;
+
+import day7_Assign1_MemberQ.Member;
+
+public class Employee extends Member {
+
+	String specialisation;
+	String department;
+}

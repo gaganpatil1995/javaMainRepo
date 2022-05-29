@@ -1,0 +1,38 @@
+package ja111_first_eval;
+import java.util.Scanner ;
+public class Course {
+	
+	int courseId ;
+	String courseName; 
+	int courseFee ;
+	void displayCourseDetails() {
+		System.out.println("Course Id :" + courseId);
+		System.out.println("Course Name :" + courseName);
+		System.out.println("Course Fee :" + courseFee);
+	}
+	static void authenticate(String username,String password) {
+		
+		if(username == "Admin" &&password=="1234") {
+			Course c1 = new Course();
+			System.out.println("Enter Your Course Id;");
+			Scanner input = new Scanner(System.in);
+			int id= input.nextInt();
+			System.out.println(id);
+			c1.courseId = id ;
+			input.nextLine();
+			System.out.println("Enter your Course name:");
+			String name = input.nextLine();
+			
+			System.out.println(name);
+			
+//			String c1.courseName= input.nextLine() ; 
+			
+			input.nextLine();
+		}
+		
+	}
+	public static void main(String[] arg) {
+		authenticate("Admin","1234");
+	}
+
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;assign3_2.CheckWh&apos; to &apos;CheckWeather&apos;&#x0D;&#x0A;- Original project: &apos;day3Assignment&apos;&#x0D;&#x0A;- Original element: &apos;assign3_2.CheckWh&apos;&#x0D;&#x0A;- Renamed element: &apos;assign3_2.CheckWeather&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;CheckWh&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;assign3_2{CheckWh.java[CheckWh" matchStrategy="1" name="CheckWeather" qualified="false" references="true" similarDeclarations="false" stamp="1652879729601" textual="false" version="1.0"/>
+</session>

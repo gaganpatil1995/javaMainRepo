@@ -1,0 +1,15 @@
+package day7_Assign1_MemberQ;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		Employee employe = new Employee();
+		Manager manager = new Manager() ;
+		employe.name = "Abhishke chouhan" ;
+		employe.age = 27 ;
+		employe.phoneNumber = "9087343454";
+		employe.address = "Nagpur Maharashtra";
+		System.out.println(employe.name);
+	}
+
+}

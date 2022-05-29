@@ -1,0 +1,15 @@
+package assign3_1;
+
+public class Demo {
+
+	
+
+	
+		public static void main(String[] args){
+		String message = "Welcom" ;
+		
+		message = message+ "Back" ;
+		System.out.println(message);
+		}
+}
+

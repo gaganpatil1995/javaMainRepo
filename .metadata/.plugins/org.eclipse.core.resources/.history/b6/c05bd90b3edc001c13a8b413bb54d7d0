@@ -1,0 +1,17 @@
+package day7_assingment;
+
+public class Member {
+
+	String name ;
+	int age ;
+	String phoneNumber;
+	String address ;
+	double salary;
+	void printSalary() {
+		
+	}
+	
+	public static void main(String[] args) {
+		
+	}
+}

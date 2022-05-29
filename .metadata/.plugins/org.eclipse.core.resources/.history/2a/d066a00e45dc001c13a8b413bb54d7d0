@@ -1,0 +1,35 @@
+package day7_Assign1_MemberQ;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		Employee employe = new Employee();
+		Manager manager = new Manager() ;
+		employe.name = "Abhishke chouhan" ;
+		employe.age = 27 ;
+		employe.phoneNumber = "9087343454";
+		employe.address = "Nagpur Maharashtra";
+		employe.salary = 200000;
+	
+		System.out.println("Employe Name :"+employe.name) ;
+		System.out.println("Employe Age:" +employe.age);
+		System.out.println("Employe Phone number:"+ employe.phoneNumber);
+		System.out.println("Employe Address :"+ employe.address);
+		employe.printSalary();
+		
+		
+		
+		employe.name = "Abhishke chouhan" ;
+		employe.age = 27 ;
+		employe.phoneNumber = "9087343454";
+		employe.address = "Nagpur Maharashtra";
+		employe.salary = 200000;
+	
+		System.out.println("Employe Name :"+employe.name) ;
+		System.out.println("Employe Age:" +employe.age);
+		System.out.println("Employe Phone number:"+ employe.phoneNumber);
+		System.out.println("Employe Address :"+ employe.address);
+		employe.printSalary()
+	}
+
+}

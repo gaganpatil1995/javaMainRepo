@@ -1,0 +1,17 @@
+package assign3_1;
+
+public class Demo {
+
+	
+
+	
+		public static void main(String[] args){
+		String message = "Welcome" ;
+//		String[] m = message.split("");
+//		String l =message.replace("e","f") ;
+		message = message +"back" ;
+		System.out.println(message);
+//		System.out.println(l);
+		}
+}
+

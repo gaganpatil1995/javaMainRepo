@@ -1,0 +1,12 @@
+package practice;
+import java.util.Scanner ;
+public class Scanner1 {
+
+	public static void main(String[] srg) {
+		Scanner input = new Scanner(System.in) ;
+		System.out.println("are you 18 above :");
+		boolean areU18Plus = input.nextBoolean() ;
+//		System.out.println(areU18Plus);
+	}
+	 
+}

@@ -1,0 +1,10 @@
+package car_question;
+
+public class MainCar {
+
+	public static void main(String[] srgs) {
+		
+		Car s1 = new Car("harrier","tata","black",new Engine()) ;
+		System.out.println(s1.companyName);
+	}
+}

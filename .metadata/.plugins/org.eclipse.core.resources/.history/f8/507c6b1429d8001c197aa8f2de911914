@@ -1,0 +1,16 @@
+package assign3_1;
+
+public class Demo {
+
+	
+
+	
+		public static void main(String[] args){
+		String message = "Welcome" ;
+		String[] m = message.split("");
+//		"apcer".replace(old Char:"e", newChar:"f") ;
+		System.out.println(message);
+		System.out.println(m);
+		}
+}
+

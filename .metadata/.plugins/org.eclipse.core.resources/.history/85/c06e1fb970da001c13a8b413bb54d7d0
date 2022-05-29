@@ -1,0 +1,21 @@
+package practice;
+import java.util.Scanner ;
+public class Scanner1 {
+
+	public static void main(String[] srg) {
+		Scanner input = new Scanner(System.in) ;
+		System.out.println("are you 18 above :");
+		boolean areU18Plus = input.nextBoolean() ;
+//		System.out.println(areU18Plus);
+		if(areU18Plus==true) {
+			System.out.println("You are eligible");
+		}
+		else
+			System.out.println("You are not eligible");
+		
+		System.out.println("Enter your age");
+		double age = input.nextDouble();
+		System.out.println(age);
+	}
+	 
+}
