@@ -1,0 +1,34 @@
+package javaday4;
+
+public class Student {
+ int roll ;
+ String name; 
+ int age ;
+ int marks ;
+ Student() {
+	 
+	 
+ }
+ Student(int roll, String name,int age1, int marks) {
+	this.roll = roll ;
+	this.name = name ;
+	this.age = age1;
+	this.marks = marks ;
+ }
+ 
+ public static void main(String[] args) {
+	
+	 Student s1 = new Student(12,"jay",23,80) ; 
+	 System.out.println(s1.roll); 
+	 System.out.println(s1.name); 
+	 System.out.println(s1.age); 
+	 System.out.println(s1.marks); 
+	 //	 s1.roll = 12 ;
+//	 s1.name = "jay" ;
+//	 s1.marks = 80 ;
+
+	 Student s2 = new Student();
+	
+
+}
+}
