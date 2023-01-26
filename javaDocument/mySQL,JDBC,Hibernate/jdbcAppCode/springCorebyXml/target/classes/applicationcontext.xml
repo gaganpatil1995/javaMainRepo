@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="st1" class = "com.masai.Student"> 
+             
+  <constructor-arg name="roll" value = "201" />
+  <constructor-arg name = "name" value = "Gagan" />
+  <constructor-arg name= "marks" value = "300" />         
+  
+  </bean>
+  
+  <bean id = "clg1" class = "com.masai.College">
+  <property name="college_name" value = "priyadar" />
+  <property name="student" ref="st1" />
+  <property name="college_address" value= "nagpur"/>
+  </bean>
+</beans>

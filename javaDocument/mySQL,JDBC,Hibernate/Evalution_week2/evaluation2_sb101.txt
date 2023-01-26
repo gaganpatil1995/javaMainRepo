@@ -1,0 +1,98 @@
+question no 1: 
+ans: - 
+         mysql> create table  person
+    ->      (
+    ->      personid int primary key ,
+    ->     lastName varchar(15),
+    ->     fisrtName varchar(15)
+    ->      );
+Query OK, 0 rows affected (0.35 sec)
+
+mysql> create table address
+    -> (
+    -> addressid int ,
+    -> personid int,
+    -> city varchar(20),
+    -> state varchar(25)
+    -> );
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> insert into person values(1,'Wang','Allen');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into person values(2,'Alice','Bob');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from person ;
++----------+----------+-----------+
+| personid | lastName | fisrtName |
++----------+----------+-----------+
+|        1 | Wang     | Allen     |
+|        2 | Alice    | Bob       |
++----------+----------+-----------+
+2 rows in set (0.01 sec)
+
+mysql> insert into address values(1,2,'New York City','New York');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into address values(2,3,'San Diego','California');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from address ;
++-----------+----------+---------------+------------+
+| addressid | personid | city          | state      |
++-----------+----------+---------------+------------+
+|         1 |        2 | New York City | New York   |
+|         2 |        3 | San Diego     | California |
++-----------+----------+---------------+------------+
+2 rows in set (0.00 sec)
+
+mysql>select p.fisrtName,p.lastName,a.city,a.state from person p LEFT OUTER JOIN address a ON p.personid = a.personid;
+
++-----------+----------+---------------+----------+
+| fisrtName | lastName | city          | state    |
++-----------+----------+---------------+----------+
+| Allen     | Wang     | NULL          | NULL     |
+| Bob       | Alice    | New York City | New York |
++-----------+----------+---------------+----------+
+
+
+=====================================================================================
+
+question no 2 ) 
+-------------------------------------------------------------------------------
+ans : - 
+        Transaction is a unit of work which is used to read and write the data in order to maintain consistency in Database, before transaction and after transaction there are some property 
+to be followed , this properties is called ACID properties .
+properties are as given below :-
+1 Atomicity :- In this the entire transaction will take place at once other wise not .
+
+2 Consistency :- Database should be consistent before and after the transaction.
+
+3 Isolation :- multiple tansaction should be occur at a time without dependent on each other and with out any interuption. 
+
+4 Durabilty :- whatever the changes transaction will make it should be permanent event if it is cause in system failure.
+
+=====================================================================================
+
+Question no 4 ) 
+-------------------------------------------------------------------------------
+ans :- 
+      Normalization :-   When we store the data in DBMS , some of the data repeated which is un wanted beacause of this repeatation of data ,data redundancy happen 
+                         problem accur due to data redundancy is insertion,delection and updation anomalies. Also there is a data inconsistency 
+                          To avoid this problems we need to use Normalization.
+                         Basically Normalization is process which is use to avoid data redundancy in DBMS.
+
+
+
+
+
+
+
+
+
+
+
+
+
+

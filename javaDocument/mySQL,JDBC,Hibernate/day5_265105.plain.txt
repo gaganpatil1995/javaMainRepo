@@ -1,0 +1,472 @@
+Constraints:
+---------------
+
+--constraints are created on the columns.
+
+--it prevents invalid data entry into our tables.
+
+1. not null
+
+2.unique
+
+3.Primary key 
+
+4. Foreign key
+
+5.check : mysql does not support this check constraint.
+
+
+Note: some contraints we can apply at column level and some constraints we can apply at table level.
+
+column level : where we define the column
+not null
+unique
+Primary key
+
+table level : after defining all the columns
+composit key (multi-column primary key) 
+foreign key
+
+
+1.not null:
+-------------
+
+--null value is not allowed.
+
+2.unique:
+------------
+
+--here duplicate values are not allowed.
+
+--here we can insert null values, multiple time.
+
+Note:--whenever we define a unique then automatically DB engine will create an index on those column.
+
+--so searching based on unique column will become fast.
+
+3.Primary key:
+------------------
+
+--here also DB engine create index of that column.
+
+--value can not be duplicate
+--null is also not allowed.
+
+another diff with PK and unique:- in one table we can have multiple unique constraints but in one table we can have only one PK.
+
+--if we want to apply PK on multiple column then it will become composit key.
+
+
+****Note: with the help of PK column we can uniquely identify one record of a table.
+
+create table student
+(
+roll int primary key,
+name varchar(12) not null,unique
+address varchar(12) unique,
+marks int
+);
+
+
+teacher( tname, subject, age, phone, email )
+
+create table teacher
+(
+tname varchar(12),
+phone varchar(10),
+email varchar(18),
+age int,
+subject varchar(12),
+Primary key(tname,phone)
+);
+
+here tname and phone will become a composit key, this combination can not be duplicate.
+
+
+
+Foreign key:
+==========
+
+--with the help of FK we inforce the refrential integrity.
+--with the help of FK we can establish relationship bt 2 tables.
+
+--second table FK must refer to first table PK.
+
+--PK related FK column must belongs to the same datatype but colmun name can be diff.
+
+--FK can accept the duplicate and null value also.
+
+
+create table dept
+(
+did int primary key,
+dname varchar(12),
+location varchar(12)
+);
+
+create table emp
+(
+eid int primary key,
+ename varchar(12),
+address varchar(12),
+salary int,
+deptid int, foreign key (deptid) references dept(did)
+);
+
+
+--with the help of FK we establish parent and child relationship among tables.
+
+here dept table will act as parent table
+and emp table will act as a child table 
+
+--the table which contains the FK column will be considered as child table.
+
+
+
+
+Note: whenever we try to establish a relationship using FK then DB violates following 
+2 rules:
+
+1. deletion or updation in parent table (even we can not drop the parent tables also)
+2. insertion in child table.
+
+
+
+
+--to overcome this updation and deletion problem we should use 
+
+on delete cascade
+
+or 
+
+on delete set null
+
+simillarly for update also.
+
+--while creating the child table.
+
+create table emp
+(
+eid int primary key,
+ename varchar(12),
+address varchar(12),
+salary int,
+deptid int, foreign key (deptid) references dept(did) on delete cascade
+);
+
+
+
+adding a constraint to an existing table:
+------------------------------------------------
+
+>create table a1(id int,name varchar(12));
+
+> alter table a1 modify id int primary key;
+
+adding foreign key:
+-------------------------
+
+>create table b1(bid int);
+
+>alter table b1 add foreign key(bid) references a1(id) on delete set null;
+
+
+functions in mysql:
+------------------------
+
+--it is used to solve a perticular task.
+
+--a sql function must return a value.
+
+--in sql we have 2 types of functions:
+1.predefined functions
+2.user-defined functions(it is in PL/SQL)
+
+
+predefined functions:
+--------------------------
+
+--it is devided into 4 categories:
+
+1.number functions
+2.charecter functions
+3.group functions or aggregrate functions
+4.date functions.
+
+
+1.number functions:
+-------------------------
+
+a. abs(): it returns the absolute number.
+
+ex:
+
+>select abs(-40) from dual;   //40
+
+b. mod(m,n) : - it returns the reminder of m/n;
+
+ex:
+
+>select mod(10,2) from dual;
+
+round(m,n)
+truncate(m,n)
+
+ex:
+
+select round(12.43482,3) from dual;  //  12.435
+
+select truncate(12.43482,3) from dual;  //  12.434
+
+
+ceil()
+floor()
+
+greatest() least():
+----------------------
+
+--it will return biggest and smallest value from the list of arguments.
+
+ex:
+
+ select greatest(10,12,8,15) from dual; // 15
+
+
+Note: from a single column if we want to max and min value then we should use group functions
+like max() min();
+
+
+2.charecter functions:
+----------------------------
+
+1.upper()
+2.lower()
+3.length()
+4.replace()
+5.concat()
+6.substr()
+
+
+ex:-
+
+>  select upper(ename) from emp where eid =100;
+
+>select substr('ratan',3,2) from dual; // ta
+
+
+4. date function:
+--------------------
+
+1. sysdate() : it will return the current date and time;
+
+ex:
+
+>select sysdate() from dual;
+
+2.date_format() 
+
+> select date_format(sysdate(), '%d %m %Y');
+
+
+3. adddate()
+
+syn:
+
+adddate(date, INTERVAL value unit);
+
+DAY
+HOUR
+YEAR
+MONTH
+WEEK
+
+
+group function or aggregrate function:
+==============================
+
+--these functions operates over several values of a single column and then result in a 
+single value.
+
+1.max()
+2.min()
+3.avg()
+4.sum()
+5.count(*)
+6.count(columnName)
+
+
+
+group by clause:
+=============
+
+--the main purpose of group by clause is to group the records.
+
+--this clause is mostly used with the group functions only.
+
+--it is used to devide the similar data items into set of logical groups.
+
+short syn:
+-----------
+
+select col_name from table group by col_name;
+
+full syn:
+----------
+
+select col_names
+from
+tablename
+[where condition]  ----opt
+group by col_names
+[having <cond>]----opt
+
+
+
+ eid  | ename   | address | salary | deptid |
++------+---------+---------+--------+--------+
+|  100 | ram     | pune    |   7800 |     10 |
+|  102 | dinesh  | pune    |   7800 |     13 |
+|  103 | manoj   | delhi   |   8500 |     13 |
+|  104 | chandan | mumabi  |   8200 |     14 |
+|  105 | manoj   | NULL    |   4500 |     14 |
+| 1001 | ramesh  | patna   |   8800 |     14 |
+
+
+
+--the above data is called as detailed data and after performing the group by ,we get the 
+summerized data which is usefull for analysis.
+
+mysql> select sum(salary) from emp; // it will calculate the salary from whole table
+
+>select deptid, sum(salary) from emp group by deptid; // dept wise total salary
+
+
+>select deptid,max(salary), min(salary), avg(salary) from emp group by deptid;
+
+
+rule:
+
+1. group functions we can not use inside the where clause.
+2.other than group function all the columns mentioned inside the select clause must be there after the group by clause otherwise (oracle db will give an error and mysql may give the unexpected result).
+
+> select deptid,ename,max(salary) maximum, min(salary) minimum, avg(salary) from emp group by deptid,ename;
+
+Having:
+----------
+
+after group by clause we r not allowed to use where clause in place of where clause we should we having clause after group by clause.
+
+with where clause:-
+> select deptid,sum(salary) from emp where deptid IN(13,14) group by deptid having sum(salary) > 10000;
+
+without using where clause:
+>select deptid,sum(salary) from emp group by deptid having sum(salary) > 10000;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

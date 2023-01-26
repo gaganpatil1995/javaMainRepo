@@ -1,0 +1,19 @@
+package UseCases;
+
+//import javax.persistence.EntityManagerFactory;
+//import javax.persistence.EntityManager;
+import javax.persistence.* ;
+import javax.persistence.Persistence;
+
+import Bean_Class.Student;
+
+public class UseHibernate {
+
+	public static void main(String[] args) {
+		
+	EntityManagerFactory emf = 	Persistence.createEntityManagerFactory("studentUnit") ;
+	EntityManager em = emf.createEntityManager();
+	Student student = em.find(Student.class, 10) ;
+	System.out.println(student);
+	}
+}

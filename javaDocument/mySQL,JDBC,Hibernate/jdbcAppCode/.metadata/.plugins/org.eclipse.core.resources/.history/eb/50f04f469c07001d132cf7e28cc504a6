@@ -1,0 +1,18 @@
+package com.masai.UseCases;
+
+import java.util.Scanner;
+
+import com.masai.Dao.EmployeeDaoImpl;
+
+public class EmployeeUseCases {
+
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in) ;
+		System.out.println("Please enter employe ID"); ;
+		int emId = input.nextInt() ;
+		
+		EmployeeDaoImpl emDao = new EmployeeDaoImpl() ;
+		String address = emDao.getAddressOfEmploye(emId) ;
+		System.out.println(address);
+	}
+}

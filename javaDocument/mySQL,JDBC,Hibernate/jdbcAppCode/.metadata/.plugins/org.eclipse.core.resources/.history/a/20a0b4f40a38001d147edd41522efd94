@@ -1,0 +1,8 @@
+package com.masai;
+
+public class Traingle {
+
+	public void Draw() {
+		System.out.println("You have Drawn Triangle") ;
+	}
+}

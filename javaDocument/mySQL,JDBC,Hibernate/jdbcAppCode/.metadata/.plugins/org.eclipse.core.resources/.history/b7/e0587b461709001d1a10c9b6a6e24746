@@ -1,0 +1,49 @@
+package com.gagan.Entity;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+//@Table(name = "MyEmployee")
+public class Employee {
+    
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO) 
+	private int empId ;
+//	@Column(name = "ename") 
+	private String name ;
+//	@Column(name = "EmpAddress")
+//	@ElementCollection 
+//	@Embedded
+//	private Set<Address> addresses = new HashSet<>() ;
+//	@Column(name ="payment")
+	private int address ;
+	private int salary ;
+	
+	public Employee() {
+		
+	}
+
+	public Employee(int empId, String name, int address, int salary) {
+		super();
+		this.empId = empId;
+		this.name = name;
+		this.address = address;
+		this.salary = salary;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [empId=" + empId + ", name=" + name + ", address=" + address + ", salary=" + salary + "]";
+	}
+
+	
+
+}

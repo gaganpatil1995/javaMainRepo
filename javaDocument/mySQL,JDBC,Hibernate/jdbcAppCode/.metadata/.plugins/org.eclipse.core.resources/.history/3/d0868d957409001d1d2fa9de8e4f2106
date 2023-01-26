@@ -1,0 +1,45 @@
+package com.gagan.EMUtil;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+//import javax.persistence.EntityManagerFactory;
+//import javax.persistence.Persistence;
+import javax.persistence.Query;
+
+import com.gagan.Entity.Employee;
+
+public class EMUtil {
+	static private EntityManagerFactory emf;
+	static { 
+	emf = Persistence.createEntityManagerFactory("EmployeeUnit") ;
+	
+	}
+	public static EntityManager provideEntityManager() {
+		return emf.createEntityManager();
+	}
+	   
+	
+
+//	public static void main(String[] args) {
+	
+//	   Employee e2 = new Employee(5,"yadav","momin",2000);
+	   
+	   
+//	   Employee e1 = em.find(Employee.class,2);
+//	   em.getTransaction().begin() ;
+//	   em.persist(e2);
+//	   em.getTransaction().commit();
+//	   em.close();
+//	   String jpql = "from Employee" ;
+//	   Query q = em.createQuery(jpql) ;
+//	   List<Employee> list = q.getResultList();
+//	   
+//	   for(Employee e1 : list) {
+//		   System.out.println(e1);
+//	   }
+//	   System.out.println("Done...");
+//	}
+}

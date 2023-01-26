@@ -1,0 +1,47 @@
+package com.gagan.UseCases;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+
+import com.gagan.EMUtil.EMUtil;
+
+public class UsecasesJPQL {
+
+	public static void main(String[] args) {
+		EntityManager em = EMUtil.provideEntityManager();
+		
+		String jpql = "select name from Employee" ;
+		TypedQuery<String> tq = em.createQuery(jpql,String.class) ; 
+		List<String> allname = tq.getResultList();
+		
+		for(String a :allname) {
+			System.out.println(a);
+		}
+		
+		em.close();
+	}
+}
+
+//		
+//		Employee e1 = new Employee();
+//		e1.setName("parth");
+//		e1.setAddress("gujarkhedi");
+//		e1.setSalary(10000);
+//		{
+//		Query q = em.createQuery("update Employee set salary = salary +:bonus where salary<:sal");
+//		q.setParameter("bonus", 1000);
+//		q.setParameter("sal", 5000);
+		
+		
+		
+//		em.getTransaction().begin();
+//		int x = q.executeUpdate();
+//		em.getTransaction().commit();
+//		System.out.println(x+"updated");
+//		em.getTransaction().begin();
+//		em.persist(e1);
+//		em.getTransaction().commit();
+//	}
+		

@@ -1,0 +1,83 @@
+package com.gagan.Entity;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+//@Table(name = "MyEmployee")
+public class Employee {
+    
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO) 
+	private int empId ;
+//	@Column(name = "ename") 
+	private String name ;
+//	@Column(name = "EmpAddress")
+	@ElementCollection 
+	@Embedded
+    private List<Address> addresses = new ArrayList<>() ;
+//	private Address add ;
+//	@Column(name ="payment")
+//	private String address ;
+	private int salary ;
+	
+	public Employee() {
+		
+	}
+
+	public Employee(int empId, String name, Set<Address> addresses, int salary) {
+		super();
+		this.empId = empId;
+		this.name = name;
+		this.addresses = addresses;
+		this.salary = salary;
+	}
+
+	public int getEmpId() {
+		return empId;
+	}
+
+	public void setEmpId(int empId) {
+		this.empId = empId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Set<Address> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(Set<Address> addresses) {
+		this.addresses = addresses;
+	}
+
+	public int getSalary() {
+		return salary;
+	}
+
+	public void setSalary(int salary) {
+		this.salary = salary;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [empId=" + empId + ", name=" + name + ", addresses=" + addresses + ", salary=" + salary + "]";
+	}
+
+	
+
+}

@@ -1,0 +1,10 @@
+package com.gagan.EMUtil;
+
+import javax.persistence.Persistence;
+
+public class EMUtil {
+
+	public static void main(String[] args) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory(null)
+	}
+}

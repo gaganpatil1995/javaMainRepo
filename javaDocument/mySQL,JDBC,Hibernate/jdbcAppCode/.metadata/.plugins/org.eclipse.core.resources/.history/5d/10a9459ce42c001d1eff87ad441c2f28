@@ -1,0 +1,42 @@
+package com.masai;
+
+public class AccountDaoImpl implements AccountDao {
+ 
+	
+	@Override
+	public Account findById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String save(Account account) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String update(Account account) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String remove(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String withdraw(double amount, int accountId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String deposit(double amount, int accountId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,278 @@
+Index in DB:
+==========
+
+--index is a DB object which is used to improve the performance of DB by minimizing the number of disk access required when a query is processed.
+
+--indexes are created on the DB table columns.
+
+--whenever we try to retrieve the data by using index col then DB server retrieve the data from DB very fastly.
+
+--generally indexes are created by DBA at the time of DB schema desgin.
+
+--In DB indexes are created in 2 ways:
+
+1.automatically
+
+2.manually
+
+
+--whenever we are defining PK or unquie constraint on a perticular col, then DB server automatically create an index on those columns.
+
+
+we can also create index explicitly by using following syntax:
+
+>create index index_name on tables_name(col1,col2,...)
+
+
+Book :1000 pages ------> index(keyword<-->pagenumber)(4 pages)  
+
+
+suppose we have salary like:
+
+1.5000
+2.1200
+3.7800
+4.1000
+5.9500
+
+1000000
+
+
+salary = 3000
+
+--index maintains ordered data, bydefault it asc order 
+
+--if we create an index on salary column then our salary data will be in sorted order asc:
+
+
+4.1000
+2.1200
+1.5000
+3.7800
+5.9500
+
+--internally index uses B tree datastructure to store the indexed column value.
+
+			[1000,1200,5000,7800,9500]
+				  |
+                       -----------------------------------------------------------------------
+	    |					           |
+           [1000,1200]  					[5000,7800,9500]
+
+
+
+here 4,2,1,3,5 is the address of record(ROWID) and 1000,1200,5000,7800,9500 is the real data
+
+
+the ROWID contains 3 parts:
+
+1.file number (table name)
+2.data block number
+3.record number
+
+
+--if we try to search the details of the emp based on salary column (indexed col) then before query executes on the real table, it verifies on the index.
+
+
+Note: whenever "where clause " contains != or IS NULL or IS NOT NULL operator then DB does not searches for index for those columns even though index is created/applied on those column.
+
+
+--So if we frquently verify a perticular col value then it is better to create an index on that column.
+
+droping index:
+------------------
+
+> drop index idx_salary;
+
+
+
+Autoincrement in mysql:
+===================
+
+--this is for auto generate the id field.
+
+--mysql support auto_increment where as Oracle DB used sequence to generate the id field col automatically.
+
+
+create table student
+(
+roll int primary key auto_increment,
+name varchar(12) not null,
+marks int
+);
+
+
+--to modify an existing table:
+
+alter table emp modify eid int auto_increment;
+
+
+Limit: 
+--------
+
+> select * from emp LIMIT 4;
+
+getting record from 3 - 6th row
+
+>select * from emp LIMIT 4 OFFSET 2;
+
+after 4th record get the 2 record:
+
+>select * from emp LIMIT 4,2;
+
+relationship among tables:
+=====================
+
+At table level we have 3 types of relationships:
+
+1.One to One   (Person <---->DL, Person <----> AadharCard )
+
+2.One to Many (Father ---Child, Dept ---Emp, School--Student)
+
+3.Many to Many (Student<-->Course , Books-- Authors, Movies---Actors)
+
+
+OTO:
+=====
+
+Person("pid", pname, address, mobile, email);
+
+DL ("dlid", issueDate, expirationDate, RTO, pid-- FK refer Person(pid));
+
+here we need to make FK column also as unique
+
+
+create table Person
+(
+pid int primary key,
+pname varchar(12) not null,
+address varchar(12),
+mobile varchar(10),
+email varchar(15)
+);
+
+
+create table DL
+(
+dlid int primary key,
+issueDate date,
+expDate date,
+rto varchar(12),
+pid int unique, foreign key (pid) references Person(pid)
+);
+
+
+
+
+OTM:
+======
+
+Dept("did" dname, location)
+
+Emp("eid","ename", address, salary, deptid--FK refer Dept(did));
+
+MTM:
+=====
+
+Student("roll", sname, address, mobile)
+
+Course("cid",cname, fee, duration)
+
+Note: whenever we have MTM relationship we need to take the support of 3rd linking table
+
+Student_course(roll, cid)
+
+
+create table student
+(
+roll int primary key,
+sname varchar(12),
+address varchar(12),
+mobile varchar(12)
+);
+
+create table course
+(
+cid int primary key,
+cname varchar(12),
+fee int,
+duration varchar(12)
+);
+
+
+create table student_course
+(
+roll int,
+cid int, foreign key (roll) references student(roll), foreign key (cid) references course(cid)
+);
+
+
+
+
+mysql> select * from student_course;
++------+------+
+| roll | cid  |
++------+------+
+|    1 | 1000 |
+|    1 | 1001 |
+|    1 | 1003 |
+|    2 | 1002 |
+|    4 | 1000 |
+|    4 | 1003 |
+|    3 | 1001 |
+|    3 | 1003 |
++------+------+
+8 rows in set (0.00 sec)
+
+mysql> select * from course;
++------+-----------+------+----------+
+| cid  | cname     | fee  | duration |
++------+-----------+------+----------+
+| 1000 | Java      | 8500 | 45-days  |
+| 1001 | Spring    | 9500 | 35-days  |
+| 1002 | SQL       | 5500 | 25-days  |
+| 1003 | Hibernate | 8500 | 35-days  |
++------+-----------+------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student;
++------+--------+---------+-----------+
+| roll | sname  | address | mobile    |
++------+--------+---------+-----------+
+|    1 | ram    | delhi   | 78544545  |
+|    2 | ravi   | delhi   | 68544788  |
+|    3 | venkat | chennai | 98544788  |
+|    4 | rajiv  | hyd     | 995454545 |
++------+--------+---------+-----------+
+4 rows in set (0.00 sec)
+
+
+Q/ getting the Student details who enrolled in java:
+
+> select s.roll, s.sname, s.address,s.mobile, c.cname, c.fee, c.duration from student s INNER JOIN course c INNER JOIN student_course sc ON s.roll = sc.roll AND c.cid = sc.cid AND c.cname = 'java';
+
+
+Q/ getting the Course details in which venkat has enrolled.
+
+>select  c.cname, c.fee, c.duration, s.sname from student s INNER JOIN course c INNER JOIN student_course sc ON s.roll = sc.roll AND c.cid = sc.cid AND s.sname = 'venkat';
+
+
+Schema Desgining:
+-----------------------
+
+E R diagram (Entity relationship diagram)
+
+DB schema : Schema is a DB structural view.
+
+--it is a logical representation or description of entire db.
+
+--tables uses physical memory where schema uses logical structure to store data.
+
+
+
+
+
+
+
+
+

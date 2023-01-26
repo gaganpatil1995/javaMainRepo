@@ -1,0 +1,451 @@
+
+--Java is mostly used to develop business applications
+
+Business Organizations:
+-----------------------------
+Objectives of any BO, profit.
+
+1. small scale business organizations (grossary shop, petrol pump)
+
+2. large scale business organizations (HDFC bank, Indian railway, SBI,PEPSI, MASTERCARD)
+Enterprises.
+
+
+These BO provides their services to the client/customer. and to computerized those services what ever application we develop is known as business application.
+
+
+Common general things in any business organizations:
+
+1. store and maintain business data in a secure and easily retrival manner.
+
+2.processing that data according to the business rule.
+
+3.presenting the data in user-understandable format.
+
+
+Data and information:
+==================
+
+Data : it is a collection of raw and isolated facts.
+
+Information : when we process the data , then we gets meaningfull results, this is called infromation.
+
+
+
+Datastore:
+--------------
+
+it is a store where we can store or keep the data.
+
+1. normal books and papers.
+
+2. flat files in computer system(notepad, excel sheet, word files)
+
+disadv of flat files:
+----------------------
+
+1. data maintainace.
+2. data redundency.
+3. data integrity
+4. security 
+5. data retrival
+
+
+to overcome these problems we need to store the data inside the DBMS s/w (RBDMS s/w)
+
+Database: it is a organized collection of interrelated data or structured collection of data.
+
+DBMS is a type of s/w there we can mange multiple databases.
+
+RDBMS: in this model, the data is stored in 2 dimentaional tables.
+
+--we have multiple RDBMS s/w are there:
+
+Mysql (Oracle)
+Orcale s/w
+postgres
+ms-access
+sql-server
+db2
+etc
+
+RDBMS is an extension of DBMS s/w
+
+Note: every RDBMS is a DBMS but reverse is not true.
+
+
+--in order to work with RDBMS we need to use SQL (structured query language),it is an interface by using which we can work with any kind of RDBMS s/w.
+
+--sql is a case insensetive language.
+
+
+
+--sql language is a collection of predefined commads
+
+these commands are categorized into following categories:
+
+1.DDL (Data defination language)
+(create, alter, drop, truncate, rename)
+
+2. DML (Data manipulation Language)
+(insert, update, delete)
+
+3.DRL (Data Retrival language)
+(select)
+
+4.TCL (Transaction control language)
+(commit, rollback, savepoint)
+
+5. DCL (Decision Control language)
+(grant revoke)
+
+
+
+>show databases;
+
+>create database sb101db;
+
+after creating the db inside the mysql rdbms s/w we need to move inside that db.
+
+>use sb101db;
+
+>show tables;
+
+ 
+>create table student(roll int,name varchar(12),marks int);
+
+or
+
+create table student
+(
+roll int,
+name varchar(12),
+marks int
+);
+
+>desc student;
+
+>select * from student;
+
+1.DDL (Data defination language)
+(create, alter, drop, truncate, rename)
+===============================
+
+Datatypes in mysql:
+------------------------
+
+1.numeric types
+
+2. string types
+
+3. date and time types
+
+
+
+1.numeric types
+--------------------
+
+tinyint : 1byte
+smallint --2 byte
+mediumint - 3byte
+int ---4byte
+bigint--8byte
+
+floating point:
+-----------------
+
+float(6,2) :- the column can store 6 digit with 2 decimal places 
+
+2. string type:
+----------------
+
+1. char  : fixed length of string range bt 0 to 255 char
+
+2.varchar: variable length of string bt 1 to 65500, here we must define the length e
+
+ex:
+
+char(4)
+
+varchar(4) 
+
+
+
+value     char(4)   storage_required
+
+'a'           ------->  4 bytes
+
+'ab'        ------->   4 bytes
+
+'abcdef'   ------> error data is too long
+
+
+
+value     varchar(4)   storage_required
+
+'a'           ------->  1 bytes
+
+'ab'        ------->   2 bytes
+
+'abcdef'   ------> error data is too long
+
+Note: in the term of efficiency , if we r storing string with variable lenght the we should use varchar, and if the length is always fixed then we should use char, here char is slightly faster than varchar.
+
+
+3 date and time:
+-------------------
+
+
+a. date   yyyy-mm-dd
+
+b. datetime   : yyyy-mm-dd hh:mm:ss
+
+
+
+(1.create, 2.alter, 3.drop, truncate, rename)
+
+
+2.alter: --it is used to change the strcuture of the existing table
+
+--this command has 4 sub commands :
+
+a.add
+b. modify
+c.drop 
+d.change
+
+
+a. add: it is used to add the new cols in the existing table
+
+ex:
+> alter table student add address varchar(15);
+
+b.modify : it is used to change the col datatype of col size.
+
+ex:
+
+> alter table student modify address varchar(20);
+
+c. drop : to drop a single or multiple columns
+
+ex:
+
+>alter table student drop column address;
+
+d. change:
+
+--to rename a column
+
+ex:
+
+> alter table student change name sname varchar(12);
+
+3. drop : to drop entire table .
+
+>drop table student;
+
+Note: it can not be rolledback.
+
+4. truncate : this command is used to truncate all the rows/records permanently from the table
+--this command also can not be rolledback.
+
+>truncate table student;
+
+5.rename:  it is used to rename table.
+
+ex:
+
+>rename table student to student1;
+
+
+DML (insert,update,delete)
+
+1.insert:
+---------
+
+inserting all columns values:
+
+>insert into student values(10,'ram',780);
+
+inserting partial columns values:
+
+>insert into student(roll,sname) values(10,'amit');
+
+
+2.update:
+
+--it is used to update the date within a table
+
+ex1: updating all the marks for all the students.
+
+> update student set marks=marks+50;
+
+ex2: updating marks for only one student.
+
+>update student set marks=marks+50 where sname='ram';
+
+>update student set marks=marks+50 where marks > 800;
+
+>update student set sname='mukesh' where roll=30;
+
+3.delete: 
+-----------
+--it is used to delete the records/rows from the table.
+
+>delete from student;   // it will delete entire record from the table like truncate command.
+
+>delete from student where sname = 'amit';
+
+
+DRL(select)
+==========
+
+--this command is used to quering a table.
+
+syntax: 
+
+select col1,col2,.. 
+from tablename
+where condition
+groupby colname
+having condition
+orderby colname [asc/desc]
+
+ex1:
+
+>select * from student;   // all the column and all the rows
+
+ex2: restricting the rows by using where clause.
+
+> select * from student where roll =10;
+
+>select sname from student;
+
+>select sname from student where roll =10;
+
+using order by: to sort the record.
+--------------------
+
+> select * from student order by marks desc;
+
+operators:
+========
+
+1. Aritmatic operators: (*,/, + , -, %)
+
+
+Note: mostly aritmatic operator r used after select statement (90%)
+ and all other type of remaining operators r used in where clause only
+
+2. relational operators (= > < <= >= [!= or <>])
+
+3.logical operator (AND OR NOT)
+
+4.Special operator(IN, LIKE,..)
+
+
+ex: Arithmatic operator:
+
+> select sname,marks, marks+100 from student;
+
+>select sname,marks, marks+100 Gracemarks from student;
+
+Note: this temparory name of a column we can not use inside where clause.
+
+ex:
+
+> select sname,marks from student where roll != 10;
+
+using distinct:-- getting unique data
+------------------
+
+>select distinct marks from student;
+
+
+special operators:
+---------------------
+
+IN .... NOT IN
+
+BETWEEN  ----> NOT BETWEEN
+
+IS NULL  ----> IS NOT NULL 
+
+LIKE ---->  NOT LIKE
+
+
+> select * from student where marks IS NULL;
+
+
+>select * from student where marks BETWEEN 500 AND 800;
+or
+>select * from student where marks>=500 AND marks <=800;
+
+
+LIKE ---> NOT LIKE
+
+--it is used to retrive the data based on charecter pattern
+
+1. % -- it represents string or group of charecters.
+
+2. _  -- it represents a single charecter.
+
+
+ex:
+
+select * from student where sname LIKE 'r%';    : name should start with r
+
+ex: in name r should be any charecter
+
+>select * from student where sname LIKE '%r%';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

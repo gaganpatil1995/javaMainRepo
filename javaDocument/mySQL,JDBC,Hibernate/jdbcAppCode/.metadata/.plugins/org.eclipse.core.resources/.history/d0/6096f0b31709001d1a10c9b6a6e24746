@@ -1,0 +1,8 @@
+package com.gagan.UseCases;
+
+public class UsecasesJPQL {
+
+	public static void main(String[] args) {
+		
+	}
+}

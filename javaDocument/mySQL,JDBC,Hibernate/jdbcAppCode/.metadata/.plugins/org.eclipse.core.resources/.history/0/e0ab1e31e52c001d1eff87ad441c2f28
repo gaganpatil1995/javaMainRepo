@@ -1,0 +1,12 @@
+package com.masai;
+
+public class Demo {
+
+	public static void main(String[] args) {
+		AccountDaoImpl accDao = new AccountDaoImpl();
+		
+		Account acc = new Account(1 , "gaga@123","nagpur",2300) ;
+		
+		accDao.save(acc);
+	}
+}

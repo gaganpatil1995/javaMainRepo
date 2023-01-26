@@ -1,0 +1,5 @@
+package com.masai.EntityClass;
+
+public class Employee {
+
+}

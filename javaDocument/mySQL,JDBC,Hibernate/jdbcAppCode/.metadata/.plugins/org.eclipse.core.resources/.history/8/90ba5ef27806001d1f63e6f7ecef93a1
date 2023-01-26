@@ -1,0 +1,5 @@
+package com.gagan.UseCases;
+
+public class AccountUseCase {
+
+}

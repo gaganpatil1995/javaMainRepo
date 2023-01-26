@@ -1,0 +1,14 @@
+package com.gagan.EMUtil;
+
+import javax.persistence.*;
+//import javax.persistence.EntityManagerFactory;
+//import javax.persistence.Persistence;
+
+public class EMUtil {
+
+	public static void main(String[] args) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("EmployeeUnit");
+	   EntityManager em =	emf.createEntityManager();
+	   
+	}
+}

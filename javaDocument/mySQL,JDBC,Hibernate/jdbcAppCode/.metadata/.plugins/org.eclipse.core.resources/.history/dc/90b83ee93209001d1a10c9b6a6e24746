@@ -1,0 +1,87 @@
+package com.gagan.Entity;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
+//@Table(name = "MyEmployee")
+public class Employee extends Person {
+    
+	private Address homeAddress ;
+	private Address officeAddress ;
+	private int salary ;
+	
+
+}
+//@Id
+//@GeneratedValue(strategy = GenerationType.AUTO) 
+//private int empId ;
+////@Column(name = "ename") 
+//private String name ;
+////@Column(name = "EmpAddress")
+////@ElementCollection 
+////@Embedded
+////private Set<Address> addresses = new HashSet<>() ;
+//private String address ;
+////@Column(name ="payment")
+////private String address ;
+//private int salary ;
+//
+//@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+//private Department dpt ;
+//
+//public Employee() {
+//	
+//}
+//
+//public int getEmpId() {
+//	return empId;
+//}
+//
+//public void setEmpId(int empId) {
+//	this.empId = empId;
+//}
+//
+//public String getName() {
+//	return name;
+//}
+//
+//public void setName(String name) {
+//	this.name = name;
+//}
+//
+//public String getAddress() {
+//	return address;
+//}
+//
+//public void setAddress(String address) {
+//	this.address = address;
+//}
+//
+//public int getSalary() {
+//	return salary;
+//}
+//
+//public void setSalary(int salary) {
+//	this.salary = salary;
+//}
+//
+//public Department getDpt() {
+//	return dpt;
+//}
+//
+//public void setDpt(Department dpt) {
+//	this.dpt = dpt;
+//}
+
+//

@@ -1,0 +1,13 @@
+package com.gagan.UseCases;
+
+import com.gagan.Dao.EmployeeDaoImpl;
+import com.gagan.Entity.Employee;
+
+public class EmployeeUseCases {
+
+	public static void main(String[] args) {
+		EmployeeDaoImpl Dao = new EmployeeDaoImpl();
+		Employee e = new Employee(2, "ramesh", "balaghat", 1000);
+		System.out.println(Dao.saveEmploye(e)) ;
+	}
+}

@@ -1,0 +1,91 @@
+package com.gagan.Dao;
+
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import com.gagan.EMUtil.EMUtil;
+import com.gagan.Entity.Address;
+import com.gagan.Entity.Employee;
+
+public class EmployeeDaoImpl implements EmployeeDao {
+
+	@Override
+	public List<Employee> getAllEmployee() {
+		EntityManager em = EMUtil.provideEntityManager();
+		Query q = em.createQuery("from Employee") ;
+		 List<Employee> list = q.getResultList();
+		 return list ;
+	}
+
+//	@Override
+//	public Set<Address> getAddressOfEmployee(int empId) {
+//		EntityManager em = EMUtil.provideEntityManager() ;
+//		Employee e1 = em.find(Employee.class, empId) ;
+//		
+//		Set<Address> address = e1.getAddress() ;
+//		return address ;
+//	}
+
+	@Override
+	public String giveBonusToEmployee(int empId, int bonus) {
+		EntityManager em = EMUtil.provideEntityManager() ;
+		Employee e1 = em.find(Employee.class, empId) ;
+		if(e1!=null) {
+			em.getTransaction().begin(); 
+			e1.setSalary(e1.getSalary()+bonus);
+			em.getTransaction().commit(); ;
+			em.close() ;
+			return "Bonus Added" ;
+		}
+		else {
+			return "Invalid Employee Id" ;
+		}
+		
+		
+	}
+
+	@Override
+	public boolean deleteEmployee(int empId) {
+		EntityManager em = EMUtil.provideEntityManager() ;
+		Employee e1 = em.find(Employee.class, empId) ;
+		if(e1!=null) {
+			em.getTransaction().begin(); 
+			em.remove(e1);
+			em.getTransaction().commit();
+			em.close() ;
+			return true ;
+		}else {
+			return false ;
+		}
+	}
+
+	@Override
+	public String[] getNameAndAddress(int empId) {
+		String [] nameAdd = null ;
+		EntityManager em = EMUtil.provideEntityManager() ;
+		Employee e1 = em.find(Employee.class, empId) ;
+		if(e1!=null) {
+			nameAdd[0] = e1.getName() ;
+			nameAdd[1] = e1.getAddress() ;
+			
+		}
+		
+		return nameAdd ;
+	}
+
+	@Override
+	public boolean saveEmploye(Employee e) {
+		EntityManager em = EMUtil.provideEntityManager() ;
+		
+		em.getTransaction().begin();
+		em.persist(e);
+		em.getTransaction().commit();
+		em.close();
+		return true ;
+		
+	}
+
+}

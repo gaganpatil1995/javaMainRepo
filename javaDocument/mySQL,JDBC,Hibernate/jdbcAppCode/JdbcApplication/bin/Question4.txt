@@ -1,0 +1,20 @@
+create table MasaiEmployee
+(
+empid int primary key,
+name varchar(15),
+job_title varchar(15),
+reports_to int 
+);
+
+
+mysql> insert into MasaiEmployee(empid,name,job_title) values(1,'Arjun','vice president');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into MasaiEmployee values(2,'Abhinav','IA',1);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into MasaiEmployee values(3,'Shivam','IA',1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into MasaiEmployee values(4,'Rajasekar','IA',1);
+Query OK, 1 row affected (0.01 sec)

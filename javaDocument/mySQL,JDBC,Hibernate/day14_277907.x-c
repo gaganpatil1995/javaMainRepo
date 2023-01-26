@@ -1,0 +1,313 @@
+Jpa with hibernate:-
+-------------------------
+
+JPA Application:-
+---------------------
+
+any java application, that uses JPA api to perform persistnce operation (CRUD ) operation with 
+the DB s/w is called as JPA application.
+
+JPA architecture:-
+--------------------
+
+
+
+
+
+
+Entity class or persistence class:-
+--------------------------------------
+
+--if we are using the annotaion, then we need not map this class with the table inside the xml mapping file.
+
+--an Entity class or persistence class is a java class that is developed corresponding to a table of DB.  
+
+--this class has many instance variables should be there as same as columns in the corresponding table
+
+--we should take Entity class as a POJO class.
+
+--we need to provide mapping information with the table in this class only using annotaitons.
+
+Note:- when we gives this persistance /Entity class obj to the ORM s/w, then ORM s/w will 
+decide the destination DB s/w based on the configuration done in a xml file which is called as hibernate-configuration file.
+
+
+Configuration file:-
+-----------------------
+
+--it is an xml file its name is "persistence.xml".
+
+--this file must be created under src/META-INF folder in normal java application, where as in maven or gradle based application this file should be inside the src/main/resources/META-INF folder
+
+
+--this file content will be used by ORM s/w (ORM engine) to locate the destination DB s/w.
+
+--in this file generally 3 types of details we specify:-
+
+1.DB connection details
+
+2.ORM specific details (some instruction to the ORM s/w like dialect info,show_sql ,etc)
+
+3. annotation based entity/persistence class name.(optional from latest hibenate version)
+
+Note:- generally we take this file 1 per DB basis.
+
+--we should always create this configuration file by taking support of example applications inside 
+the project folder of hibernate download zip file or by taking the reffernce from the Google.
+ex:-
+
+persistence.xml:-
+--------------------
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+
+
+    <persistence-unit name="studentUnit" >
+
+	<class>com.ratan.Student</class>        
+
+<properties>
+         
+           <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
+          <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ratandb" />
+            <property name="javax.persistence.jdbc.user" value="root" />
+            <property name="javax.persistence.jdbc.password" value="root />
+          
+   /*
+           <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="hibernate.connection.username" value="root"/>
+            <property name="hibernate.connection.password"  value="root"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/ratandb"/>
+     */    
+
+
+
+        </properties>
+    </persistence-unit>
+</persistence>
+
+
+
+the root tag is :-
+
+<persistence> with some xml-namespace 
+
+--the child tag of <persistence> tag is <persistence-unit>
+
+--this <persistence-unit> has 2 child tags:-
+
+1. <class> tag ,:-using which we specify the Entity class name(fully qualified name) that used 
+annotations to map a table
+
+2.<properties> tag :- using this tag,we specify some configuration details to the ORM s/w
+
+
+Persistence-unit:- it is a collection of Entity/Persistence class instance reffered by a unique 
+user-defiend name.
+
+
+ORM engine :- 
+-----------------
+
+--it is a specialized s/w written in java that performs translation of jpa calls into the sql call by using mapping annotation and configuration file details and send the mapped sql to the DB s/w using JDBC.
+
+--ORM engine is provided by any ORM s/w.
+
+steps to devlop the JPA application:-
+--------------------------------------------
+
+1.create a maven project and add the hibernate-core dependency to the pom.xml.
+
+2.add jdbc driver related dependency to the pom.xml
+
+3.create a folder called "META-INF" inside src/main/resources folder, and create the "persistence.xml" file inside this folder by taking reference from Hibernate docs or from google.
+
+step 4:- create as many  Entity/Perssitence  classes  as there r tables in the DB, apply the at least 2 annotations to these classes 
+
+
+@Entity :- on the top of the class
+@Id  :- on the top of PK mapped variable
+
+--if we apply above 2 annotations then our java bean class will become Entity or Persistence class.
+
+--inside these classes , we need to take variable corresponding to the columns of the tables.
+
+
+
+step 5:- create a client application and activate ORM engine by using JPA api related following classes and interface and perform the DB operations.
+
+1.Persistence class 
+
+2.EntityManagerFactory
+
+3.EntityManager
+
+
+--if we use Hibernate core api then we need to use 
+
+Configuration class
+
+SessionFactory(I)
+
+Session(I)
+
+
+
+
+
+Note:- when we call createEntityManagerFactory(-) method by suppliying persistence-unit name on the Persistence class,we will get the EntityManagerFactory object.
+
+--this method loads the "persistence.xml" file into the memory
+
+--EntityManagerFactory obj should be only one per application per DB.
+
+this EMF obj contains :-
+
+connection pool,
+
+some meta information
+
+--by using this EMF class only we create the EntityManager object.
+
+EntityManager em= emf.createEntityManager();
+ 
+Note:- inside every DAO method we need to get the EntityManager obj
+
+
+JPA application ----------------->EntityManager(I) --------------------->ORM engine ------>JDBC------------>DB s/w
+
+
+--in order to perform any DML (insert update delete ) the method calls should be in a transactional area.
+
+
+ em.getTransaction(); method return "javax.persistice.EntityTransaction(I) " object.
+
+this EntityTransaction obj is a singleton object, i.e per EntityManager obj, only one Transaction object is created.
+
+--to store the object we need to call persist(-) method on the EM object.
+
+
+
+
+--to get the Object from the DB we need to call :- find(--) method of EM object
+
+this find(--) method takes 2 parameter 
+
+1.the Classname of the Object which we want,
+
+2.the ID value for which we want the object.
+
+
+ex:-
+
+
+Main.java:- for Read object
+--------------
+public class Main {
+	
+	public static void main(String[] args) {
+		
+		EntityManagerFactory emf=Persistence.createEntityManagerFactory("studentUnit");
+		
+		EntityManager em= emf.createEntityManager();
+		
+		Student s= em.find(Student.class, 60);
+	
+		if(s != null)
+			System.out.println(s);
+		else
+			System.out.println("Student does not exit..");
+		 
+		em.close();
+		
+	}
+
+}
+
+
+Main.java :-(insert object)
+------------------------------
+
+
+public class Main {
+	
+	public static void main(String[] args) {
+		
+		EntityManagerFactory emf=Persistence.createEntityManagerFactory("studentUnit");
+		
+		EntityManager em= emf.createEntityManager();
+		
+		Student s=new Student(35, "Arun", 780);
+		
+	/*	EntityTransaction et= em.getTransaction();
+		
+		et.begin();
+		
+		em.persist(s);
+		
+		et.commit();
+	*/	
+	
+		em.getTransaction().begin();
+		
+		em.persist(s);
+		
+		em.getTransaction().commit();
+		
+		em.close();
+		
+		System.out.println("done");
+		
+		
+	}
+
+}
+
+Main.java:- Delete:-
+-------------------------
+
+
+public class Main {
+	
+	public static void main(String[] args) {
+		
+		EntityManagerFactory emf=Persistence.createEntityManagerFactory("studentUnit");
+		
+		EntityManager em= emf.createEntityManager();
+		
+	
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("Enter roll to delete ");
+		int roll=sc.nextInt();
+		
+		Student student= em.find(Student.class, roll);
+		
+		if(student != null){
+			
+			em.getTransaction().begin();
+			
+			em.remove(student);
+			
+			em.getTransaction().commit();
+			
+			
+			System.out.println("Student removed....");
+			
+		}else
+			System.out.println("Student not found...");
+		
+		em.close();
+		
+		
+		System.out.println("done");
+		
+		
+	}
+
+}

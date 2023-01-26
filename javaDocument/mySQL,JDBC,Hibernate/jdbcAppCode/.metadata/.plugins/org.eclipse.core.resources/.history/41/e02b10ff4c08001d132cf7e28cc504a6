@@ -1,0 +1,15 @@
+package com.gagan.Entity;
+
+public class EntityClasses {
+  
+	private int empId ;
+	private String name ;
+	private String address ;
+	private int salary ;
+	
+	public EntityClasses() {
+		
+	}
+	
+
+}

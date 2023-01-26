@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.m2e.core.pom.overview">
+	</section>
+	<section name="org.eclipse.m2e.core.pom.dependencies">
+	</section>
+	<section name="MavenProjectWizardLocationPage">
+		<list key="location">
+			<item value="C:\Users\gagan\OneDrive\Documents\MASAI SCHOOL\SQL\jdbcAppCode\HibernateDao"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+	<section name="MavenProjectWizardArchetypePage">
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+	<section name="Maven2ProjectWizardArchifactPage">
+		<list key="package">
+		</list>
+		<list key="groupId">
+		</list>
+		<list key="artifactId">
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+		<list key="version">
+			<item value="0.0.1-SNAPSHOT"/>
+		</list>
+	</section>
+	<section name="MavenProjectWizardArtifactPage">
+		<list key="groupId">
+			<item value="com.masai"/>
+			<item value="com.gagan"/>
+		</list>
+		<list key="name">
+		</list>
+		<list key="artifactId">
+			<item value="springCorebyXml"/>
+			<item value="InheritanceQuetion4"/>
+			<item value="Sb201RepeatEvalWeek2"/>
+			<item value="Hiberante_OneToMany"/>
+			<item value="HibernateJPQL_Employe"/>
+			<item value="EmployeHobernateApp"/>
+			<item value="Sb201repeatEvalWeek1"/>
+			<item value="HibernateDao"/>
+			<item value="Evaluation4"/>
+			<item value="hibernateDao"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+		<list key="version">
+			<item value="0.0.1-SNAPSHOT"/>
+		</list>
+	</section>
+	<section name="MavenProjectImportWizardPage">
+		<list key="rootDirectory">
+			<item value="C:\Users\gagan\OneDrive\Documents\MASAI SCHOOL\JAVA\JavaProject_OnlineFoodDelivery\GaganPatil_OnlineFoodPlaza"/>
+			<item value="C:\Users\gagan\OneDrive\Documents\MASAI SCHOOL\JAVA\C0-Vaccine_Project\cowin.gov.in-master"/>
+			<item value="C:\Users\gagan\OneDrive\Documents\MASAI SCHOOL\JAVA\C0-Vaccine_Project\FinalProject\Covid_Vaccination_Tracker"/>
+			<item value="C:\Users\gagan\OneDrive\Documents\MASAI SCHOOL\SQL\jdbcAppCode\springbootdatajpafinalapp"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+</section>

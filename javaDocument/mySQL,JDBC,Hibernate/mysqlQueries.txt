@@ -1,0 +1,182 @@
+
+
+create table Deposit( actno varchar(25)
+,cname varchar(20),
+bname varchar(20),
+amount int ,
+ adate date
+);
+
+create table branch( bname varchar(20) , city varchar(20)) ;
+
+ create table borrow(loanno varchar(5) , cname varchar(20) , bname varchar(20) , amount int ) ;
+
+desc deposit ;
+
+desc branch ;
+
+desc borrow ;
+
+
+insert into  deposit values ('100' , 'anil','VRCE' ,1000,'1995-03-01') ;
+
+insert into  deposit values('101' , 'sunil','MGROAD' ,5000,'1996-01-04') ;
+
+insert into  deposit values('102' , 'rahul','KAROLBAGH' ,3500,'1995-11-17') ;
+
+insert into  deposit values('103' , 'madhuri','CHANDANI' ,1200,'1995-12-17') ;
+
+insert into  deposit values('104' , 'pramod','MGROAD' ,3000,'1996-03-27') ;
+
+insert into  deposit values('105' , 'sandip','KAROLBAGH' ,2000,'1996-03-31') ;
+
+
+insert into branch values('VRCE' , 'Nagpur') ;
+
+insert into branch values('KAROLBAGH' , 'Delhi') ;
+
+insert into branch values('CHANDANI' , 'Delhi') ;
+
+insert into branch values('MGROAD' , 'Banglore') ;
+
+
+
+insert into customer values('anil', 'calcuta') ;
+
+insert into customer values('rahul', 'baroda') ;
+
+insert into customer values('madhuri', 'nagpur') ;
+
+insert into customer values('pramod', 'nagpur') ;
+
+insert into customer values('sunil', 'delhi') ;
+
+
+
+insert into borrow values('201','anil','VRCE',1000) ;
+insert into borrow values('206','rahul','KAROLBAGH',5000) ;
+insert into borrow values('311','sunil','MGROAD',3000) ;
+insert into borrow values('321','madhuri','CHANDANI',2000) ;
+insert into borrow values('375','pramod','MGROAD',8000) ;
+
+select * from borrow where amount>=2000 and amount <=3000 ;
+
+select * from deposit;
+
+select cname , actno from deposit ;
+
+select * from customer where city = 'nagpur' ;
+
+select cname from deposit where adate > '1995-11-17' ;
+
+// GETTING DATA between two dates 
+select actno , amount  from deposit where adate BETWEEN '1995-12-01' AND '1996-06-01' ;
+
+//getting data using varchar starting first (single) letter 
+select * from deposit where substring(cname , 1, 1)= 'c' ;
+
+//getting data using varchar starting secound (single) letter
+select * from borrow where substring(cname , 2, 1)= 'u' ;
+
+select * from deposit where bname = 'chandani' OR 'magroad' ;
+select * from deposit where bname != 'chandani' OR 'magroad' ;
+
+//sort the table content 
+select * from deposit where amount>1000  ORDER BY cname ;
+
+
+select * from deposit where amount>1000  ORDER BY cname  DESC;
+
+select * from borrow  where substring(cname,3,1) = 'A' OR substring(cname,3,1) = 'D' ;
+
+select * from borrow where amount < 2000 OR amount >8000 ;
+
+//to get uniqe record 
+> select distinct * from deposit ;
+
+//update column
+UPDATE deposit set amount = amount* 0.1 where bname='VRCE' ;
+
+
+// to get the difference between entries ;
+select((select count(city) from station)-(select count(distinct city) from station)) as ans;
+
+
+basic SQL 2 
+
+ create table student( name varchar(20) , rollno int , branch varchar(20), city varchar(20)) ;
+insert into student values('vijay',150 , 'CSE', 'CHENNAI') ;
+insert into student values('sita',202 , 'ETC', 'KOLKATA') ;
+insert into student values('ravi',300 , 'EEE', 'DELHI') ;
+insert into student values('basu',165 , 'ETC', 'CHENNAI') ;
+insert into student values('rasmi',107 , 'ETC', 'RKL') ;
+insert into student values('karan',111 , 'CSE', 'CTC') ;
+insert into student values('rekha',117 , 'BME', 'BBSR') ;
+
+
+select count(*) from student ;
+
+ select count(*) from student where  substring(branch,1,1) = 'e' ;
+
+alter  table student add marks long ;
+
+alter table student modify name varchar(25) ;
+
+delete from student where branch = 'ETC' ;
+
+rename table student to studinformation;
+
+truncate table student ;
+
+drop table student ;
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Table: Customers
+
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| id          | int     |
+| name        | varchar |
++-------------+---------+
+id is the primary key column for this table.
+Each row of this table indicates the ID and name of a customer.
+ 
+
+Table: Orders
+
++-------------+------+
+| Column Name | Type |
++-------------+------+
+| id          | int  |
+| customerId  | int  |
++-------------+------+
+id is the primary key column for this table.
+customerId is a foreign key of the ID from the Customers table.
+Each row of this table indicates the ID of an order and the ID of the customer who ordered it.
+ 
+
+Write an SQL query to report all customers who never order anything.
+
+Return the result table in any order.
+
+The query result format is in the following example.
+
+
+ans-  select customers.name from customers where not exists (select orders.customerid from orders where orders.customerid = customers.id) ;
+
+ans2- select customers.name as 'Customers'
+from customers
+where customers.id not in
+(
+    select customerid from orders
+);
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+

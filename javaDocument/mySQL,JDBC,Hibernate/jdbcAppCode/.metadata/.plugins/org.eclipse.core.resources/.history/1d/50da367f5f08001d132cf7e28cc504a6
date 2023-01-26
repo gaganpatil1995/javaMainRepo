@@ -1,0 +1,11 @@
+package com.gagan.UseCases;
+
+import com.gagan.Dao.EmployeeDaoImpl;
+
+public class EmployeeUseCases {
+
+	public static void main(String[] args) {
+		EmployeeDaoImpl Dao = new EmployeeDaoImpl();
+		System.out.println(Dao.deleteEmployee(2)) ;
+	}
+}

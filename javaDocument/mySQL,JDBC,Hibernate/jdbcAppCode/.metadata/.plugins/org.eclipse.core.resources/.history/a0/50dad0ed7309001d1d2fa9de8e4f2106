@@ -1,0 +1,5 @@
+package com.gagan.Entity;
+
+public class Book {
+
+}

@@ -1,0 +1,114 @@
+package com.gagan.UseCases;
+
+import java.util.Set;
+
+import javax.persistence.EntityManager;
+
+import com.gagan.EMUtil.EMUtil;
+import com.gagan.Entity.Address;
+import com.gagan.Entity.Employee;
+
+public class UsecasesJPQL {
+
+	public static void main(String[] args) {
+		EntityManager em = EMUtil.provideEntityManager();
+	
+	em.close();
+	System.out.println("Done...");
+	    
+	}
+}
+//example five one to many 
+//Employee e1 = new Employee();
+//e1.setName("saho");
+//e1.setSalary(20000);
+//Set<Address> allAdd = e1.getAddresses();
+//allAdd.add(new Address("Madhya", "bhuranpur", "221133"));
+//allAdd.add(new Address("maharashtra", "pune", "221144"));
+//allAdd.add(new Address("rajastan", "lahore", "001133"));
+//
+//Employee e2 = new Employee();
+//e2.setName("saho");
+//e2.setSalary(22000);
+//Set<Address> allAdd2 = e2.getAddresses();
+//allAdd2.add(new Address("Madhya", "sewan", "771133"));
+//allAdd2.add(new Address("Uttar pradesh", "jharkhand", "223344"));
+//
+//Employee e3 = new Employee();
+//e3.setName("rahul");
+//e3.setSalary(27000);
+//Set<Address> allAdd3 = e3.getAddresses();
+//allAdd3.add(new Address("Madhya", "chindwara", "353533"));
+//allAdd3.add(new Address("maharashtra", "nagpur", "224544"));
+//
+//Employee e4 = new Employee();
+//e4.setName("shyam");
+//e4.setSalary(24000);
+//Set<Address> allAdd4 = e4.getAddresses();
+//allAdd4.add(new Address("uttarpradesh", "hingna", "555133"));
+//allAdd4.add(new Address("maharashtra", "kaachii", "233344"));
+//
+//em.getTransaction().begin();
+//em.persist(e1);
+//em.persist(e2);
+//em.persist(e3);
+//em.persist(e4);
+//em.getTransaction().commit();
+//example four
+//Employee e1 = new Employee() ;
+//e1.setName("guju");
+//e1.setSalary(8000);
+//Address ad1 = new Address() ;
+//ad1.setCity("buranpur");
+//ad1.setPincode("229911");
+//ad1.setState("madhya pradesh");
+//e1.setAdd(ad1);
+//em.getTransaction().begin();
+//em.persist(e1);
+//em.getTransaction().commit();
+//em.close();
+//System.out.println("Done...");
+//eample three
+//{
+//	String jpql = "select name,address from Employee" ;
+//	TypedQuery<Object[]> tq = em.createQuery(jpql,Object[].class) ; 
+//	List<Object[]> allname = tq.getResultList();
+//	
+//	for(Object[] a :allname) {
+//		System.out.println(a[0]);
+//		System.out.println(a[1]);
+//	}
+//	}
+//example two 
+//{
+//String jpql = "select name from Employee" ;
+//TypedQuery<String> tq = em.createQuery(jpql,String.class) ; 
+//List<String> allname = tq.getResultList();
+//
+//for(String a :allname) {
+//	System.out.println(a);
+//}
+//}
+
+//example one
+//		
+//		Employee e1 = new Employee();
+//		e1.setName("parth");
+//		e1.setAddress("gujarkhedi");
+//		e1.setSalary(10000);
+//		{
+//		Query q = em.createQuery("update Employee set salary = salary +:bonus where salary<:sal");
+//		q.setParameter("bonus", 1000);
+//		q.setParameter("sal", 5000);
+		
+		
+		
+//		em.getTransaction().begin();
+//		int x = q.executeUpdate();
+//		em.getTransaction().commit();
+//		System.out.println(x+"updated");
+//		em.getTransaction().begin();
+//		em.persist(e1);
+//		em.getTransaction().commit();
+//	}
+		

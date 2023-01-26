@@ -1,0 +1,5 @@
+package com.gaga.Exception;
+
+public class InvalidAccount {
+
+}

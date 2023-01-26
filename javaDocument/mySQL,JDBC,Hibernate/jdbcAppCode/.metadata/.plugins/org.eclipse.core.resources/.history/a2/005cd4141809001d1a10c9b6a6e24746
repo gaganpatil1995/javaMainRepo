@@ -1,0 +1,27 @@
+package com.gagan.UseCases;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import com.gagan.EMUtil.EMUtil;
+import com.gagan.Entity.Employee;
+
+public class UsecasesJPQL {
+
+	public static void main(String[] args) {
+		EntityManager em = EMUtil.provideEntityManager();
+		
+		Employee e1 = new Employee();
+		e1.setName("sundar");
+		e1.setAddress("saoner");
+		e1.setSalary(4000);
+		
+//		Query q = em.createQuery("insert into Employee");
+		
+//		q.executeUpdate();
+		em.getTransaction().begin();
+		em.persist(e1);
+		em.getTransaction().commit();
+		em.close();
+	}
+}
