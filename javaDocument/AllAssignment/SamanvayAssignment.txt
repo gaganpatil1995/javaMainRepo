@@ -1,0 +1,96 @@
+public static void getChange(double totalAmount , double totalCost){
+        int[] ans = new int[6] ;
+        
+        if(totalAmount<totalCost){
+            return ;
+        }
+        
+       
+       int[] totalAmountArr = Arrays.stream((""+totalAmount).trim().split("[.]"))
+                                  .mapToInt(Integer::parseInt).toArray();
+        
+        int[] totalCostArr = Arrays.stream((""+totalCost).trim().split("[.]"))
+                                  .mapToInt(Integer::parseInt).toArray(); 
+                                  
+       int remainPaisa = 0 ;
+       int remainRupe = 0;
+       
+       if(totalAmountArr[1]>=totalCostArr[1]){
+           remainPaisa = totalAmountArr[1] - totalCostArr[1] ;
+       }else{
+           totalAmountArr[0] -= 1;
+           
+           if(totalAmountArr[1]==0){
+               remainPaisa = 100 - totalCostArr[1] ;
+           }else{
+               remainPaisa = Integer.parseInt(1+""+totalAmountArr[1] ) - totalCostArr[1] ;
+           }
+           
+       }
+        
+       remainRupe = totalAmountArr[0] - totalCostArr[0] ;
+        
+        
+       ans = getRemainChange(remainRupe , remainPaisa) ;
+       
+       System.out.println(Arrays.toString(ans)) ;
+        
+    }
+    
+    public static int[] getRemainChange(int remainRupe , int remainPaisa){
+        int[] ans = new int[6] ;
+        
+        while(remainRupe>0){
+           ans[5] += 1 ;
+           remainRupe -= 1 ;
+       }
+       
+       while(remainPaisa>= 50 ){
+           ans[4] += 1;
+           remainPaisa -= 50 ;
+       }
+       while(remainPaisa >= 25){
+           ans[3] += 1 ;
+           remainPaisa -= 25 ;
+       }
+       while(remainPaisa>=10){
+           ans[2] += 1;
+           remainPaisa -= 10 ;
+       }
+       while(remainPaisa >= 5 ){
+           ans[1] += 1;
+           remainPaisa -= 5 ;
+       }
+      
+       while(remainPaisa >=1){
+           ans[0] += 1 ;
+           remainPaisa -= 1 ;
+       }
+       
+       return ans ;
+        
+    }
+
+
+
+
+
+
+
+//Most Regular Employee Details 
+ select name , e.id 
+ from employee as e Join attendance_register as a 
+ On e.id = a.employee_id
+ Group by a.employee_id
+ Order by count(a.employee_id) DESC limit 1;
+
+
+//Most Irregular Employee Details
+
+ select name , e.id 
+ from employee as e Join attendance_register as a 
+ On e.id = a.employee_id
+ Group by a.employee_id
+ Order by count(a.employee_id) limit 1
+
+
